@@ -1,0 +1,10 @@
+old fashioned|sugar cube and Angostura bitters, crushed, and stirred with a large ice cube and bourbon whiskey|7.00|cocktail|
+Sazerac|This is whiskey, bitters, and sugar, in an absinthe-coated glass|10.50|cocktail|
+Manhattan|made with peppery rye, bitters, and sweet vermouth with Bulleit, Rittenhouse, and Maker's Mark.|8.50|cocktail|
+Vieux Carre|rye whiskey, cognac, sweet vermouth, bitters, lemon twist|9.75|cocktail|
+Moscow Mule|served in a copper mug filled with vodka, lime, ginger, and soda.|8.95|cocktail|
+Whiskey Sour|bourbon whiskey, lemon juice, teaspoon of sugar|8.25|cocktail|
+Boulevardier|bourbon whiskey, campari, red sweet vermouth|9.60|cocktail|
+Ruby|Malibu (coconut liqueur), Lychee Liqueur (a fruit), Cognac, Cherry juice, Lemon|9.90|cocktail|
+Python|White Rum, Mint Liqueur, Pineapple Juice, Juice of Half a Lemon, Sprite|9.91|cocktail|
+Java Cocktail Martini|Vodka, Kahlua Coffee Liqueur, White Crème de Cacao, Espresso or Strong Black Coffee|9.95|cocktail|
