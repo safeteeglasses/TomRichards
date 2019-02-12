@@ -21,17 +21,22 @@ private int counter    = 0;
 	
 	public void cashOut() {
 		System.out.println("Your total order comes to : $" + getBalance());
-		String [] dollarAmounts = {"Cash", "Credit"};
-		String choice = "" ;
-		choice = (String)menu.getChoiceFromOptions(dollarAmounts);
-		int dollar = Integer.parseInt(choice);
-		setBalance(dollar);
+		String [] cashOrCredit = {"Cash", "Credit - Not currently available"};
+		String choice = "";
+		choice =  (String)menu.getChoiceFromOptions(cashOrCredit);
+	  //int dollar = Integer.parseInt(choice);
+	  //setBalance(dollar);
 	  //System.out.println(getBalance());
+		if(choice.equals("Cash")){
+			feedMoney();
+			}
+		
+		
 	}
 	public void feedMoney() {
 		System.out.println("Dollar amount");
 		String [] dollarAmounts = {"1.00", "5.00", "10.00", "20.00", "50.00"};
-		String choice = "" ;
+		String choice = "";
 		choice = (String)menu.getChoiceFromOptions(dollarAmounts);
 		double dollar = Double.parseDouble(choice);
 		
@@ -59,7 +64,7 @@ private int counter    = 0;
 	}
 	public void run() throws FileNotFoundException {
 		
-		Bar myBar = new Bar();
+		//Bar myBar = new Bar();
 		while(true) {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			
@@ -75,9 +80,12 @@ private int counter    = 0;
 					choice = (String)menu.getChoiceFromOptions(purchaseOptions());
 					
 				if(choice.equals("Cash out bill")) {
+					cashOut();
+				if(choice.equals("Cash")){
 					feedMoney();
+					//finishingTransaction();
 					}
-	
+				}
 				if(choice.equals("Select Drink")) {
 				List<String>choices = new ArrayList<String>();
 				choices = fileReader();
@@ -104,13 +112,13 @@ private int counter    = 0;
 	public void displayOptions() throws FileNotFoundException {
 		List<String> result = new ArrayList<String>();
 		String line = "";
-		File inputFile = new File("DrinkMenu.txt");
+		File inputFile = new File("menu.txt");
 		Scanner fileScanner = new Scanner(inputFile);
 		while(fileScanner.hasNextLine()) {
 			line += fileScanner.nextLine() + "\n";
-	}
-		line = "\n" + line;
-		System.out.println(line);
+			}
+			line = "\n" + line;
+			System.out.println(line);
 	}
 	public String[] purchaseOptions() {
 		String[] choices = {"Select Drink", "Cash out bill"
@@ -120,11 +128,11 @@ private int counter    = 0;
 	public List<String>fileReader() throws FileNotFoundException{
 		List<String> result = new ArrayList<String>();
 		String line = "";
-		File inputFile = new File("DrinkMenu.txt");
+		File inputFile = new File("menu.txt");
 		Scanner fileScanner = new Scanner(inputFile);
 		while(fileScanner.hasNextLine()) {
 			line += fileScanner.nextLine();
-			
+		
 		}
 		
 		result = menuReader(line);
@@ -177,7 +185,8 @@ private int counter    = 0;
 			
 	public void finishingTransaction() {
 		System.out.println("you are finishing your order");
-		System.out.println("\n");
+		//System.out.println("\n");
+		
 		double holder = getBalance();
 		double sum = 0.0;
 		double changeReturned = getBalance();
@@ -231,6 +240,8 @@ private int counter    = 0;
 		System.out.println("dimes:    " + amountOfChange[4]);
 		System.out.println("nickels:  " + amountOfChange[5]);
 		System.out.println("pennies:  " + amountOfChange[6]);
+		
+		
 		
 //		changeReturned = changeReturned * -1;
 		
