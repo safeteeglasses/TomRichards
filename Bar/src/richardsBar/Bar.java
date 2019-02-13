@@ -18,25 +18,25 @@ private int counter    = 0;
 	public void setBalance(double money) {
 		this.balance = money;
 	}
-	
 	public void cashOut() {
-		System.out.printf("Your total order comes to : $%.2f", getBalance());
-		String [] cashOrCredit = {"Cash", "Credit - Not currently available"};
+		System.out.printf("Your total order comes to : $%.2f\n", getBalance());
+		String [] cashOrCredit = {"Cash", "Credit"};
 		String choice = "";
 		choice =  (String)menu.getChoiceFromOptions(cashOrCredit);
-	  //int dollar = Integer.parseInt(choice);
-	  //setBalance(dollar);
-	  //System.out.println(getBalance());
 		if(choice.equals("Cash")){
 			feedMoney();
+		}
+			else {
+				 if(choice.equals("Credit")) { 
+					enterCard();
 			}
+		}
 		while(getBalance() > 0) {
 			feedMoney();
 		}
 		 {
 			finishingTransaction();
-		}
-		
+		}	
 	}
 	public void feedMoney() {
 		System.out.printf("\nCurrent bill is $%.2f",getBalance());
@@ -49,13 +49,21 @@ private int counter    = 0;
 		
 		dollar = getBalance() - dollar;
 		setBalance(dollar);  
-	    //System.out.printf("Current bill is $%.2f",getBalance() * -1);
-		
 	}
 	public Bar() {
 		balance = 0.0;
 	}
-	
+	public void enterCard() {
+		Scanner keyboard = new Scanner(System.in);
+		String creditCard = "";
+		String cardExpire = "";
+		System.out.println("Please enter your 16 digit card number");
+		creditCard=keyboard.nextLine();
+		System.out.println("Please enter the expiration date xx/xxxx");
+		cardExpire=keyboard.nextLine();
+			setBalance(0);
+		System.out.println("\nApproved, Thank you!");	
+	}
 	private List<Drinks> options = new ArrayList<Drinks>();
 	private static final String   MAIN_MENU_OPTIONS_DISPLAY  = "Display today's drinks";
 	private static final String   MAIN_MENU_OPTIONS_PURCHASE = "Purchase";
@@ -71,15 +79,12 @@ private int counter    = 0;
 	}
 	public void run() throws FileNotFoundException {
 		System.out.println("Welcome to Tom's Bar!");
-		//Bar myBar = new Bar();
+	
 		while(true) {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			
 			if(choice.equals(MAIN_MENU_OPTIONS_DISPLAY)) {
-				displayOptions();
-				
-				
-				
+				displayOptions();	
 			} else if(choice.equals(MAIN_MENU_OPTIONS_PURCHASE)) {
 				
 				while(choice != "Finish Transaction") {
@@ -88,11 +93,6 @@ private int counter    = 0;
 					
 				if(choice.equals("Cash out bill")) {
 					cashOut();
-				if(choice.equals("Cash")){
-					feedMoney();
-					
-					
-					}
 				}
 				if(choice.equals("Select Drink")) {
 				List<String>choices = new ArrayList<String>();
@@ -108,15 +108,12 @@ private int counter    = 0;
 				purchaseItem(choice);
 				}
 			}
-				//finishingTransaction();
 		}
 		else if(choice.equals(MAIN_MENU_OPTIONS_EXIT)) {
 			return;
 			}
 		}
-	
-	}
-			
+	}		
 	public void displayOptions() throws FileNotFoundException {
 		List<String> result = new ArrayList<String>();
 		String line = "";
@@ -140,9 +137,7 @@ private int counter    = 0;
 		Scanner fileScanner = new Scanner(inputFile);
 		while(fileScanner.hasNextLine()) {
 			line += fileScanner.nextLine();
-		
 		}
-		
 		result = menuReader(line);
 		return result;
 	}
@@ -162,8 +157,7 @@ private int counter    = 0;
 				}
 			}
 		}
-		return result;
-			
+		return result;	
 	}
 	public void purchaseItem(String name) {
 		String purchaseName = "";
@@ -175,28 +169,19 @@ private int counter    = 0;
 				count++;
 				drink.setNumberBought();
 				purchaseName = drink.getName();
-				
 				}
-			
-	
 			else {
 				System.out.println("Out of stock");
 				count++;
-			}
+				}
 			}
 		}
-		System.out.println("\n");
-		System.out.printf("Your current bill is: $%.2f",getBalance());
-		System.out.println("\n");
-	}
-		
-			
+		System.out.printf("\nYour current bill is: $%.2f\n",getBalance());	
+	}		
 	public void finishingTransaction() {
-		System.out.println("you are finishing your order");
-		//System.out.println("\n");
+		System.out.println("you are finishing your order\n");
 		
 		double holder = getBalance();
-		double sum = 0.0;
 		double changeReturned = getBalance();
 		int tenDollar  = 10;
 		int fiveDollar = 5;
@@ -231,7 +216,7 @@ private int counter    = 0;
 			changeReturned += nickel;
 			amountOfChange[5]++;
 		}
-		while(changeReturned <= -.01) {
+		while(changeReturned <= -.009) {
 			changeReturned += penny;
 			amountOfChange[6]++;
 		}
@@ -240,7 +225,7 @@ private int counter    = 0;
 		System.out.printf("Your total change is: $%.2f",holder);
 		System.out.println("\n");
 		setBalance(0);
-		//System.out.println("\nChange returned:");
+		
 		System.out.println("Tens:     " + amountOfChange[0]);
 		System.out.println("Fives:    " + amountOfChange[1]);
 		System.out.println("Ones:     " + amountOfChange[2]);
@@ -248,48 +233,11 @@ private int counter    = 0;
 		System.out.println("dimes:    " + amountOfChange[4]);
 		System.out.println("nickels:  " + amountOfChange[5]);
 		System.out.println("pennies:  " + amountOfChange[6]);
-		
-		
-		
-//		changeReturned = changeReturned * -1;
-		
-//		for(int i = 0; i < amountOfChange.length; i++) {
-//			sum += amountOfChange[i];
-//		}
-//		System.out.printf("$%.2f",changeReturned);
-//		System.out.printf("\nChange returned: $%.2f",changeReturned);
-//		System.out.println("\n");
 		}
 	
-
-
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public static void main(String[] args) throws FileNotFoundException {
 		Menu menu = new Menu(System.in, System.out);
 		Bar myBar = new Bar(menu);
 		myBar.run();
-	
 	}
-		
-
 }
