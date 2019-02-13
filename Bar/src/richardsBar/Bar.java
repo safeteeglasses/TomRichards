@@ -20,7 +20,7 @@ private int counter    = 0;
 	}
 	
 	public void cashOut() {
-		System.out.println("Your total order comes to : $" + getBalance());
+		System.out.printf("Your total order comes to : $%.2f", getBalance());
 		String [] cashOrCredit = {"Cash", "Credit - Not currently available"};
 		String choice = "";
 		choice =  (String)menu.getChoiceFromOptions(cashOrCredit);
@@ -30,10 +30,17 @@ private int counter    = 0;
 		if(choice.equals("Cash")){
 			feedMoney();
 			}
-		
+		while(getBalance() > 0) {
+			feedMoney();
+		}
+		 {
+			finishingTransaction();
+		}
 		
 	}
 	public void feedMoney() {
+		System.out.printf("\nCurrent bill is $%.2f",getBalance());
+		System.out.println("\n");
 		System.out.println("Dollar amount");
 		String [] dollarAmounts = {"1.00", "5.00", "10.00", "20.00", "50.00"};
 		String choice = "";
@@ -42,7 +49,7 @@ private int counter    = 0;
 		
 		dollar = getBalance() - dollar;
 		setBalance(dollar);  
-	  //System.out.printf("$%.2f",getBalance());
+	    //System.out.printf("Current bill is $%.2f",getBalance() * -1);
 		
 	}
 	public Bar() {
@@ -63,7 +70,7 @@ private int counter    = 0;
 		this.menu = menu;
 	}
 	public void run() throws FileNotFoundException {
-		
+		System.out.println("Welcome to Tom's Bar!");
 		//Bar myBar = new Bar();
 		while(true) {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -83,7 +90,8 @@ private int counter    = 0;
 					cashOut();
 				if(choice.equals("Cash")){
 					feedMoney();
-					//finishingTransaction();
+					
+					
 					}
 				}
 				if(choice.equals("Select Drink")) {
@@ -100,7 +108,7 @@ private int counter    = 0;
 				purchaseItem(choice);
 				}
 			}
-				finishingTransaction();
+				//finishingTransaction();
 		}
 		else if(choice.equals(MAIN_MENU_OPTIONS_EXIT)) {
 			return;
@@ -282,4 +290,6 @@ public static void main(String[] args) throws FileNotFoundException {
 		myBar.run();
 	
 	}
+		
+
 }
